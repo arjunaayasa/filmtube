@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(go mod init:*)",
+      "Bash(npx:*)",
+      "Bash(go version:*)",
+      "Bash(go mod tidy:*)",
+      "Bash(find:*)",
+      "Bash(npm:*)",
+      "Bash(psql:*)",
+      "Bash(redis-cli:*)",
+      "Bash(go clean:*)",
+      "Bash(for f in internal/redis/redis.go internal/auth/auth.go internal/db/queries.go internal/api/handlers_auth.go internal/api/handlers_films.go internal/api/middleware.go)",
+      "Bash(do sed:*)",
+      "Bash(done)",
+      "Bash(go build:*)",
+      "Bash(awk:*)",
+      "Bash(python3:*)",
+      "Bash(echo:*)"
+    ]
+  }
+}

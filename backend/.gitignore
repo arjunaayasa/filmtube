@@ -1,0 +1,4 @@
+# Go files to ignore
+backend/cmd
+backend/internal
+

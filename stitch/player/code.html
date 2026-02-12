@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cinematic Film Player View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec1337",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221013",
+                        "surface-dark": "#2e161a", // Slightly lighter than bg-dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #221013; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a2b30; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ec1337; 
+        }
+
+        /* Range slider styling */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+        }
+        input[type=range]:focus {
+            outline: none; 
+        }
+        
+        .cinema-mode-active .sidebar-section,
+        .cinema-mode-active .nav-section,
+        .cinema-mode-active .info-section {
+            opacity: 0.1;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        .cinema-mode-active .player-section {
+            z-index: 50;
+            position: relative;
+            transform: scale(1.02);
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-display min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white">
+<!-- Navigation -->
+<nav class="nav-section sticky top-0 z-40 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5 h-16">
+<div class="max-w-[1600px] mx-auto px-4 h-full flex items-center justify-between">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 group" href="#">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white font-bold text-lg group-hover:bg-primary/90 transition-colors">I</div>
+<span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Indie<span class="text-primary">Stream</span></span>
+</a>
+<div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Discover</a>
+<a class="hover:text-primary transition-colors" href="#">Festivals</a>
+<a class="hover:text-primary transition-colors" href="#">Creators</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<input class="bg-gray-100 dark:bg-white/5 border-transparent focus:border-primary focus:ring-0 rounded-full py-1.5 pl-10 pr-4 text-sm w-64 transition-all" placeholder="Search films..." type="text"/>
+<span class="material-icons-outlined absolute left-3 top-1.5 text-gray-400 text-lg">search</span>
+</div>
+<button class="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-gray-300 transition-colors">
+<span class="material-icons-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-gray-200 dark:border-white/10">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDAfbgTVNQMtdxJvNAsg6FcCwvk8ApHV05JemSIJdXIKMZdlZCQiB-EuEuoJbsw7Hv7P2DFrRAlHG2AqUO-rL0XkPrqiH3n9rRIoCT1cxbjtHdPqoG0pz9QuO1kDOPfUe5TEcn0jd1Q1fTWPiD4DwKd2G3CaRPTbCe60tjtWIJ3sW6py0oYCcoc2xep5lL_Gy7nAihKXbWz08Z6fcoeGclxm4cI_AZDV9SgMz5rNsccyrqlK57WLzpaRxJkffDC-qn8kZDqXNj1m-j"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Grid -->
+<main class="flex-grow max-w-[1600px] mx-auto px-4 py-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Player & Info (Span 8-9 cols) -->
+<div class="lg:col-span-8 xl:col-span-9 flex flex-col gap-6">
+<!-- Video Player Component -->
+<div class="player-section w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl shadow-primary/10 relative group ring-1 ring-white/10">
+<!-- Video Placeholder Image -->
+<img alt="Cinematic movie scene" class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-500" data-alt="Cinematic still from a film showing a moody landscape with fog" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF1zhgVMjlUPMpLtzBisQssvy5YHGQT7DBOoTCKnhl6om9UnuGnXR4bOyYplGWHbGnW13h7tC1d6RYweiK-vflF03tpZHTibMGzteDjzxe1Af-RjxjHLLv7-dhJ4KhvaEPcP15lp0pMmFodU478ou7CQdmtCX7wJAfRNsYC2aOC-7MqktKf3Ts9yLElWGoFO_IgGDHromrA1C0NZrRIG6pSwIw3e96268yNnuAOYTwRW6_koTE8tZ5ZLtJCMc6h3IlB9iVLLaPzBt3"/>
+<!-- Play Button Overlay -->
+<div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+<div class="w-20 h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-lg shadow-primary/30 backdrop-blur-sm transform group-hover:scale-110 transition-transform duration-300">
+<span class="material-icons text-white text-5xl ml-1">play_arrow</span>
+</div>
+</div>
+<!-- Player Controls Overlay (Bottom) -->
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent px-6 pb-6 pt-16 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-3">
+<!-- Progress Bar -->
+<div class="w-full h-1 bg-white/20 rounded-full cursor-pointer group/progress relative">
+<div class="absolute top-0 left-0 h-full w-[35%] bg-primary rounded-full">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full scale-0 group-hover/progress:scale-100 transition-transform shadow"></div>
+</div>
+</div>
+<!-- Control Buttons -->
+<div class="flex items-center justify-between text-white">
+<div class="flex items-center gap-4">
+<button class="hover:text-primary transition-colors"><span class="material-icons">play_arrow</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-icons-outlined">volume_up</span></button>
+<span class="text-xs font-medium text-gray-300">04:20 / 14:15</span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Cinema Mode Toggle -->
+<button class="flex items-center gap-1.5 px-3 py-1 rounded hover:bg-white/10 transition-colors text-xs font-medium uppercase tracking-wider" onclick="document.body.classList.toggle('cinema-mode-active')">
+<span class="material-icons-outlined text-sm">wb_incandescent</span>
+                                Cinema Mode
+                            </button>
+<button class="hover:text-primary transition-colors"><span class="material-icons-outlined">settings</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-icons-outlined">fullscreen</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="info-section flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-gray-200 dark:border-white/5 pb-6">
+<div class="flex-1">
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">The Silent Echo</h1>
+<div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+<span class="bg-gray-200 dark:bg-white/10 px-2 py-0.5 rounded text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wide">4K</span>
+<span class="bg-gray-200 dark:bg-white/10 px-2 py-0.5 rounded text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wide">Sci-Fi</span>
+<span>•</span>
+<span>2023</span>
+<span>•</span>
+<span>14m 15s</span>
+<span>•</span>
+<div class="flex items-center gap-1 text-yellow-500">
+<span class="material-icons text-sm">star</span>
+<span class="text-slate-700 dark:text-slate-300 font-medium">4.8</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 self-start mt-2 md:mt-0">
+<button class="w-10 h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-primary dark:hover:text-primary transition-colors tooltip" title="Add to Watchlist">
+<span class="material-icons-outlined">bookmark_border</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-primary dark:hover:text-primary transition-colors tooltip" title="Share">
+<span class="material-icons-outlined">share</span>
+</button>
+<button class="h-10 px-6 rounded-full bg-primary hover:bg-primary/90 text-white font-semibold flex items-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-95">
+<span class="material-icons-outlined text-sm">favorite</span>
+<span>Support Creator</span>
+</button>
+</div>
+</div>
+<!-- Tabs & Content -->
+<div class="info-section">
+<!-- Tabs Header -->
+<div class="flex gap-8 border-b border-gray-200 dark:border-white/5 mb-6">
+<button class="pb-3 border-b-2 border-primary text-primary font-medium text-sm tracking-wide">Synopsis</button>
+<button class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium text-sm tracking-wide transition-colors">Director's Notes</button>
+<button class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium text-sm tracking-wide transition-colors">Cast &amp; Crew</button>
+</div>
+<!-- Content Body -->
+<div class="grid md:grid-cols-3 gap-8">
+<div class="md:col-span-2 text-slate-600 dark:text-slate-300 leading-relaxed space-y-4">
+<p>In a dystopian future where silence is the only currency left, a young archivist discovers a hidden recording that could dismantle the oppressive regime. Hunted by the Soundkeepers, she must traverse the ruins of the old world to broadcast the message before her voice is stolen forever.</p>
+<p>Winner of the <em>Best Cinematography</em> award at the 2023 Neo-Noir Film Festival. "The Silent Echo" explores themes of censorship, memory, and the enduring power of the human voice.</p>
+</div>
+<!-- Quick Credits -->
+<div class="md:col-span-1 bg-gray-100 dark:bg-surface-dark rounded-lg p-5 border border-gray-200 dark:border-white/5">
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Key Credits</h3>
+<div class="space-y-3 text-sm">
+<div class="flex justify-between">
+<span class="text-slate-500 dark:text-slate-400">Director</span>
+<a class="font-medium hover:text-primary hover:underline" href="#">Elena Vance</a>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500 dark:text-slate-400">Writer</span>
+<a class="font-medium hover:text-primary hover:underline" href="#">Marcus Thorne</a>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500 dark:text-slate-400">DOP</span>
+<span class="font-medium">Sarah Jenkins</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500 dark:text-slate-400">Music</span>
+<span class="font-medium">The Void Collective</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Comment Section Preview -->
+<div class="info-section mt-4 pt-6 border-t border-gray-200 dark:border-white/5">
+<h3 class="text-lg font-semibold mb-4 text-slate-900 dark:text-white">Discussion (24)</h3>
+<div class="flex gap-4 mb-6">
+<div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/10 flex-shrink-0 overflow-hidden">
+<img alt="Current User" class="w-full h-full object-cover" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6wlpdtQBmQC51nrIa4hdbEw4Tl5OlEP-N00ypEGcKV0HpVVic1CgUoYqhHCDkDMoVCh0fUgmDJqoon_P1J660PZa4mR5CxyzfhGDKNmGHfaNocqoXSep8DjfxOa5CTf7AChHtx4I1LYjYW_AB8Z87ud60znYGq11FVJgHOn7JMLYlp7O2ImioZU5KeHll6Jg-tnfn0W0JBSq98uy178NFwFmsXVUdtBO7agvG5ps_00rQnzp3dizCMNs5GnuxCekIEyFVvioCIe05"/>
+</div>
+<div class="flex-grow">
+<textarea class="w-full bg-transparent border border-gray-300 dark:border-white/10 rounded-lg p-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary dark:text-white placeholder-slate-500" placeholder="Add a comment..." rows="2"></textarea>
+<div class="flex justify-end mt-2">
+<button class="px-4 py-1.5 bg-primary/10 hover:bg-primary text-primary hover:text-white rounded text-sm font-medium transition-colors">Post</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar (Span 4-3 cols) -->
+<aside class="sidebar-section lg:col-span-4 xl:col-span-3 space-y-8">
+<!-- Creator Profile Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-5 border border-gray-200 dark:border-white/5 shadow-sm">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-14 h-14 rounded-full overflow-hidden ring-2 ring-primary/20">
+<img alt="Director Elena Vance" class="w-full h-full object-cover" data-alt="Portrait of a female film director" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgXBSHKKITH_nB5ybcDv2D3VeQ8jPFIqIyT9wSht8qT8WzEuLzBH4Pciyhro8qT-imOJUQQ4Be7T1YgT-5WkZz8cBjkPrxkpPImzicmHlNbG5AJ-AqJ0LClr70668UPoeUTJ_LXDU-4qvf4zq7YcddfpScsvjvCBo_ZInPvL7Fnhv3gnd9BRQ_506Pijkj5b1T21dyYmFR_MLcb2UZCcsRy_AJQRkK-tXcurTt2vjEVXrF3s_ippfneiY1PFzgi0HmnnbWFT8Akefg"/>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">Elena Vance</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Filmmaker • London, UK</p>
+<p class="text-xs text-primary mt-1">12 Films • 15k Followers</p>
+</div>
+</div>
+<button class="w-full py-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white text-sm font-medium transition-colors">
+                    Follow Director
+                </button>
+</div>
+<!-- More from Director -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">More by Elena</h3>
+<a class="text-xs text-primary hover:text-white transition-colors" href="#">View all</a>
+</div>
+<div class="space-y-4">
+<!-- Film Card Small -->
+<a class="flex gap-3 group" href="#">
+<div class="w-24 aspect-video rounded-lg overflow-hidden relative">
+<img alt="Film Poster" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Abstract colorful light streaks at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx2VGf6U2i62RI2lok1JrVOUqFq-ZlMAGbRWIo-I-d3Ay3Ns3pZEfB4VieF6H-8aFzI_S3DIEstnPRWijWAFTPG72LvVw15kd_D29EgM90ZIZqUXEpfJS8A1GOCI2Flepcj4TUa0vtyFn7Z4OB_xJjvE7YLdG1VaNOJft-5BSox8nbovEN39RzlTGE5ZwyZnmwgbddWZuO-TCKII5u_XUXm0RpLNzb9Npg7aTxi68gftKxDym4BY89BhXa7bHREiiAKhES3wfp9dLL"/>
+<div class="absolute bottom-1 right-1 bg-black/80 px-1 rounded text-[10px] text-white font-medium">08:12</div>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="text-sm font-medium text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors line-clamp-1">Neon Drift</h4>
+<p class="text-xs text-slate-500 dark:text-slate-500">2021 • Drama</p>
+</div>
+</a>
+<a class="flex gap-3 group" href="#">
+<div class="w-24 aspect-video rounded-lg overflow-hidden relative">
+<img alt="Film Poster" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close up of a vintage camera lens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpjUn9jBdMJH0YT16AaQT0GS01hFzK-kARSM8IQ4xPH7EgT0Qz0BOfA9Ezar7ltA0hjHPE5RZNIKVypm98P0SM_BIVblzpbOoGXDl10CuuczKX_WmhuUTW3bR9A48L-q28O4QON45jSQPk85nzzH7dOsV2I21xts4BCzl9XnM2WFVqKgpo0EZ6okx8pKqS3I2kzC3N0LsowRcciEAn8HgB1yTftzwy8z7tD_pKrdMgB24F0SMXKZlm5-0VaspAIpeC3hKDiSpaY1KD"/>
+<div class="absolute bottom-1 right-1 bg-black/80 px-1 rounded text-[10px] text-white font-medium">12:45</div>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="text-sm font-medium text-slate-800 dark:text-slate-200 group-hover:text-primary transition-colors line-clamp-1">Analog Memories</h4>
+<p class="text-xs text-slate-500 dark:text-slate-500">2020 • Documentary</p>
+</div>
+</a>
+</div>
+</div>
+<!-- Related Films -->
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">Related Films</h3>
+<div class="space-y-4">
+<!-- Film Card Medium -->
+<a class="block group relative rounded-lg overflow-hidden aspect-video" href="#">
+<img alt="Related Film" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Silhouette of a person standing against a dark blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPTz-aYQvX2bMVXlor9wN3jJJZ2jHStoBvwtDRHF9re16oDBgQ5bKf2KWvC6Bqt4Axm0rpkOEZkdoyf5DyjTPqniUlpi4KyBosZFVmQPF_LXmoBpBPqBq7Tlto5xrbiBdJlX3uPhBE-4AKw_mBf5cT-xzClar9Jlwp1dA4QbxG9kAv1w6w4A_--xN9KPw4TMdEDlbhQ-OdBU1WGcMa6ye_7STgIpnbVmAZLKDpKvZE1HjUDke74wFhsAstDzdhlmxaGXc33znUaWML"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+<h4 class="text-white font-semibold text-sm group-hover:text-primary transition-colors">The Last Signal</h4>
+<p class="text-xs text-gray-400">Sci-Fi • 22m</p>
+</div>
+</a>
+<a class="block group relative rounded-lg overflow-hidden aspect-video" href="#">
+<img alt="Related Film" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Futuristic neon city street at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSfNk79iJ-UxNSlNQZymBbU0ex6lyLwsUnRQTBRx72GWD8hVektwpVtzTS0vuTE7nFkFs21qGzwhLr2kE_bwd8J2DAAsTgF6ycIWqtMVa-arSYuc3ekFgecgOR_VxGBBMynfQVhLwxpJ0WXI-FN-hV3UvjK1Th2pm6UikvjkabLW9NEfskodQc3jtNqiwAXbiSaMezrdpc5q-jw-QJiH0Lm_T1Y0n4mqmPNxBMvFZ8ke7fpIrz9Ed8ETrgCjY119ETzX4TZ8EGSvvy"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+<h4 class="text-white font-semibold text-sm group-hover:text-primary transition-colors">Cyber Blues</h4>
+<p class="text-xs text-gray-400">Experimental • 05m</p>
+</div>
+</a>
+<a class="block group relative rounded-lg overflow-hidden aspect-video" href="#">
+<img alt="Related Film" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Misty forest with sun rays breaking through" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6R8Kqd84d_jlKQHiqx8JdoKc2DfQcn4QzOtlq7-bW1l38IsNv6tBnTsRXcW913tY_SlLPc_5fi0_C5ZZTxRVSLtk_Ad98crv0tznfawXGxmrGDnt19tpY8es-cTXiDUX0h_axBhFHI_Qm8sQUCq8nQZZ7DrHmQSV3atWz6qbafpULJ83jL1XxoOxCtT70gUXQcyBzd7JpKLhKl5D2Y7miPTqqUJIMK2lpymi1a-xduBe6QeRZLVLKGEHpC52N5f4Eq05vjFkQpRid"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+<h4 class="text-white font-semibold text-sm group-hover:text-primary transition-colors">Whispers in the Wood</h4>
+<p class="text-xs text-gray-400">Horror • 18m</p>
+</div>
+</a>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer Simple -->
+<footer class="info-section border-t border-gray-200 dark:border-white/5 mt-auto py-8">
+<div class="max-w-[1600px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+<p>© 2023 IndieStream. Empowering creators everywhere.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Upload Film</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Be Vietnam Pro", sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-display antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-gray-700 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary dark:bg-primary;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, #ec1337, #ff6b81);
+  }
+
+  .cinema-mode-active .sidebar-section,
+  .cinema-mode-active .nav-section,
+  .cinema-mode-active .info-section {
+    opacity: 0.1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .cinema-mode-active .player-section {
+    z-index: 50;
+    position: relative;
+    transform: scale(1.02);
+    transition: all 0.5s ease;
+  }
+}

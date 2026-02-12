@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Film Creator Platform Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec1337",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#0f0f0f",
+                        "surface": "#221013",
+                        "card-dark": "#1e1e1e"
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    gridTemplateColumns: {
+                        'fluid': 'repeat(auto-fill, minmax(300px, 1fr))',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #ec1337, #ff6b81);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-display antialiased selection:bg-primary selection:text-white overflow-x-hidden">
+<nav class="fixed top-0 w-full z-50 bg-background-light dark:bg-[#0f0f0f] border-b border-gray-200 dark:border-white/10 h-14 flex items-center justify-between px-4">
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-gray-800 dark:text-white transition-colors">
+<span class="material-icons">menu</span>
+</button>
+<div class="flex items-center gap-1 cursor-pointer">
+<div class="w-7 h-7 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-icons text-sm">movie_filter</span>
+</div>
+<span class="text-lg font-bold tracking-tight hidden sm:block">CINE<span class="text-primary">VERSE</span></span>
+</div>
+</div>
+<div class="hidden md:flex flex-1 max-w-2xl mx-8">
+<div class="flex w-full relative">
+<input class="w-full bg-transparent border border-gray-300 dark:border-gray-700 rounded-l-full py-2 px-4 focus:outline-none focus:border-primary dark:text-white dark:bg-[#121212] placeholder-gray-500 text-sm" placeholder="Search films, creators, genres..." type="text"/>
+<button class="bg-gray-100 dark:bg-[#222] border border-l-0 border-gray-300 dark:border-gray-700 rounded-r-full px-5 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-[#333] transition-colors">
+<span class="material-icons text-gray-600 dark:text-gray-400 text-lg">search</span>
+</button>
+<button class="ml-4 p-2 rounded-full bg-gray-100 dark:bg-[#121212] hover:bg-gray-200 dark:hover:bg-[#222] transition-colors">
+<span class="material-icons text-gray-800 dark:text-white text-lg">mic</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-2 sm:gap-4">
+<button class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-gray-800 dark:text-white hidden sm:block">
+<span class="material-icons-outlined">video_call</span>
+</button>
+<button class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-gray-800 dark:text-white">
+<span class="material-icons-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-gray-700 overflow-hidden border border-white/10 cursor-pointer">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoNtjMX10FKrRZG_cZByHDGJoAttD4pIw1v7Isi26f4Fs5W68SRbSuKqiJ8KGfZIoku0MfOyHdpFMC6LxlPl_P21CCTinvUqI16p_d25dkD7P6aq1o_Op5YPzqJhyIfAm9fhP97ni0QVR8lFBAU7112cUhUxFC-sX6KgcOX_dhOVdtNnFbC78mh_cPiw1_1ln78e19wSilA9SN-Gxh1jH63LoAkzv8BuRNl-yvlpLICwPKm00kxFm7eNF-usCUC_lM2O8ZEjB9pfxo"/>
+</div>
+</div>
+</nav>
+<div class="flex pt-14 h-screen overflow-hidden">
+<aside class="hidden md:flex w-60 flex-col bg-background-light dark:bg-[#0f0f0f] overflow-y-auto hide-scrollbar pb-4 pr-2">
+<div class="p-3 space-y-1">
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg bg-black/5 dark:bg-white/10 text-primary font-medium hover:bg-black/10 dark:hover:bg-white/20 transition-colors" href="#">
+<span class="material-icons">home</span>
+<span class="text-sm">Home</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined">local_fire_department</span>
+<span class="text-sm">Trending</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined">subscriptions</span>
+<span class="text-sm">Subscriptions</span>
+</a>
+</div>
+<div class="my-2 border-t border-gray-200 dark:border-white/10"></div>
+<div class="p-3 space-y-1">
+<h3 class="px-3 py-1 text-xs font-semibold text-gray-500 uppercase">Library</h3>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined">video_library</span>
+<span class="text-sm">Library</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined">history</span>
+<span class="text-sm">History</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined">watch_later</span>
+<span class="text-sm">Watch Later</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined">thumb_up</span>
+<span class="text-sm">Liked Videos</span>
+</a>
+</div>
+<div class="my-2 border-t border-gray-200 dark:border-white/10"></div>
+<div class="p-3 space-y-1">
+<h3 class="px-3 py-1 text-xs font-semibold text-gray-500 uppercase">Subscriptions</h3>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<img class="w-6 h-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3m9P4VJ5i7WcVzPJFrZoGlg05RzkBhb5oseM2ldTrrqNOq0lYTf2gxqkztM7GRcHRyyqrHH-o1-xHOZuZcFJwFDx3lFtuabHdFQhJQok3gMFFxKGKssAR_s-K3dP__SsNg4YMbGNU9LXWYqsBQVaYhETIMnLf74DiLsJY7Hb7mIRm2SsIXKIaywr-JKWPLhllIK7DNoFxnyLIvM7b89K5ysvlD5dOGy-8iai-Q7fwsKte4oP5VQHIrPLWdo-2d0iMx-exh5pwLe_Q"/>
+<span class="text-sm truncate">Sarah J.</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<img class="w-6 h-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIfScFnkVbNj-CkrXrKLVpyKc13URYab65L2MKpHBPxpquciMSdyc7nzV6ECiu3ktxTbGzfwNjsrsbavzccBIhEopH-bBsTJTFd5XVaNvP0F-Lcwsf28QYttBm19MowNE40cvcXg2wabK43-xyi3JBZe5sC4rlOLLon_B7kU8nsI1Z0a50b8PnO8nYNITETisdZoTNRblSpa6GikD2W6h2HU4LaLDO1N6CAlsbgTLo1BFpFbELb9P1QkwT40kqQWeceEa66bOtZ8Hn"/>
+<span class="text-sm truncate">Marcus T.</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<img class="w-6 h-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBIOTLfvL1QezmZVGdeH9EYzawAmb5l9UMdK0McVDhcMPK9lK1HFmfScFIcwrsSxZuDyNb5EgMSGMlS_hYwfpZcvvw_AxIyoniAJps0IMT4A49auX5AAWsAnQ48Fsnxd9GTVT56VVGIJ3Pxch9GqTUX_UqKjnqxDw8JTXB6PG_Q5iIHghXppIwYQyjtlVopgieJHGbyfBJ_WMJ5xkw7NGjdCruBZLlISN16UqQ99Tmcs8xkgD88XkJ77b58eOn4cVW2dNA3eGV4Ell"/>
+<span class="text-sm truncate">Elena R.</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<img class="w-6 h-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdMVtoq9oyf8BtpY547-U9RJC9y1tafDuUwwEuoFBF_BEHKr4H21VkCA2uQgrbloTOPtIYjDPPhd_bB17uZgWigYsdX_Lrwq5xuls0o9vi4MoHhxSfEWa7Rzd-4vulG45afT5PLyo3WsqBLu31FxQ1x12MdzBifUA9bgIpttwDrkL8WUU2BQgGb3-Jtcb5iQcZ6P8dX3BMwZ_Sf0PWm19mUmwFA9ZReRaQltIxA6Rjx97_IhybHC0VKMTnxm2MSmtLY7pU14sATbWv"/>
+<span class="text-sm truncate">David K.</span>
+</a>
+</div>
+<div class="my-2 border-t border-gray-200 dark:border-white/10"></div>
+<div class="p-3 space-y-1">
+<h3 class="px-3 py-1 text-xs font-semibold text-gray-500 uppercase">Explore</h3>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined">movie</span>
+<span class="text-sm">Films</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined">videocam</span>
+<span class="text-sm">Documentaries</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-[#0f0f0f] relative">
+<div class="sticky top-0 z-20 bg-background-light/95 dark:bg-[#0f0f0f]/95 backdrop-blur-sm w-full py-3 px-4 border-b border-gray-200 dark:border-white/5">
+<div class="flex gap-3 overflow-x-auto hide-scrollbar">
+<button class="px-3 py-1.5 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-black text-sm font-medium whitespace-nowrap transition-colors">All</button>
+<button class="px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-[#272727] hover:bg-gray-300 dark:hover:bg-[#3f3f3f] text-gray-800 dark:text-gray-100 text-sm font-medium whitespace-nowrap transition-colors">Short Films</button>
+<button class="px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-[#272727] hover:bg-gray-300 dark:hover:bg-[#3f3f3f] text-gray-800 dark:text-gray-100 text-sm font-medium whitespace-nowrap transition-colors">Documentaries</button>
+<button class="px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-[#272727] hover:bg-gray-300 dark:hover:bg-[#3f3f3f] text-gray-800 dark:text-gray-100 text-sm font-medium whitespace-nowrap transition-colors">Animation</button>
+<button class="px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-[#272727] hover:bg-gray-300 dark:hover:bg-[#3f3f3f] text-gray-800 dark:text-gray-100 text-sm font-medium whitespace-nowrap transition-colors">Sci-Fi</button>
+<button class="px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-[#272727] hover:bg-gray-300 dark:hover:bg-[#3f3f3f] text-gray-800 dark:text-gray-100 text-sm font-medium whitespace-nowrap transition-colors">Experimental</button>
+<button class="px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-[#272727] hover:bg-gray-300 dark:hover:bg-[#3f3f3f] text-gray-800 dark:text-gray-100 text-sm font-medium whitespace-nowrap transition-colors">Award Winners</button>
+<button class="px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-[#272727] hover:bg-gray-300 dark:hover:bg-[#3f3f3f] text-gray-800 dark:text-gray-100 text-sm font-medium whitespace-nowrap transition-colors">Newly Uploaded</button>
+</div>
+</div>
+<section class="max-w-[2000px] mx-auto p-4 md:p-6 pb-2">
+<div class="relative w-full rounded-2xl overflow-hidden bg-[#1a1a1a] border border-white/5 shadow-2xl flex flex-col md:flex-row h-auto md:h-[300px] group cursor-pointer hover:border-white/20 transition-all">
+<div class="relative w-full md:w-[55%] h-48 md:h-full overflow-hidden">
+<img alt="Hero Background" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl_4KeQlJrmaxKD43adt-Bkf_GzrmTXOkh3ABq8-j2gxqlXDoXyZciPtQ51gSrenopbSFsKjddIV5ZgOOlv1AH_aS_hMjnu-Ajm4OLltFjAN7E1k9Xi3l6nPjXhWII8IR_uZEIxQA5zTePv7wg0C3Z8ePdq3rEJjlAQ06Vncptq9TEHCl9KwAeMlhMtW-STYrw6i3gk9pSxrDHtDFcT3Ic1Xkk5OT3b15zKnx-fyzPtDAh1lqMpTdWf_AcI0xKjMeIci3bj5miJ2tB"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all"></div>
+<div class="absolute bottom-4 right-4 bg-black/80 text-white text-xs font-bold px-2 py-1 rounded">1:48:00</div>
+</div>
+<div class="flex-1 p-6 md:p-8 flex flex-col justify-center bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f] relative z-10">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-primary text-xs font-bold uppercase tracking-wider">Featured Premiere</span>
+</div>
+<h2 class="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">The Silent Echoes</h2>
+<div class="flex items-center gap-2 text-gray-400 text-xs mb-3">
+<span>Sci-Fi / Drama</span>
+<span>•</span>
+<span>2023</span>
+<span>•</span>
+<span>Sarah Jenkins</span>
+</div>
+<p class="text-gray-300 text-sm mb-6 line-clamp-2 md:line-clamp-3">In a world where sound is currency, a young musician discovers a frequency that could change everything. A visual masterpiece.</p>
+<div class="flex gap-3 mt-auto">
+<button class="flex-1 bg-white text-black font-semibold py-2 px-4 rounded hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+<span class="material-icons text-lg">play_arrow</span> Watch
+                            </button>
+<button class="p-2 rounded bg-white/10 hover:bg-white/20 text-white transition-colors">
+<span class="material-icons text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-[2000px] mx-auto p-4 md:p-6 pt-2">
+<h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                    Recommended for You
+                </h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUBgkuV54nb31utEGP9eAjHlsjWL3k9vnv0QQ__boVrxocN3lxa_lLDFoLBtvd1I23Gl9C0UmS4RDt-8_8_TxjhkI6mtzMJtXtxrJxZDhZbLWSJQPCyd9_y11WtQE7AgTHhJvpglAttthMiRSTsYeiHgjpnwZ2upfQzq7Z6q_2_9pR-rWyVm47HPK7W8Zyg3lBw6yipwOqL4xM8hO2ivG6aW58btDmrgvYkglNv16dvRHJh_r7LZuQN2TSZfZOiAYI1yEgy8UPlzdh"/>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">1:24:12</div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="flex gap-3 items-start">
+<img alt="Avatar" class="w-9 h-9 rounded-full object-cover mt-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3m9P4VJ5i7WcVzPJFrZoGlg05RzkBhb5oseM2ldTrrqNOq0lYTf2gxqkztM7GRcHRyyqrHH-o1-xHOZuZcFJwFDx3lFtuabHdFQhJQok3gMFFxKGKssAR_s-K3dP__SsNg4YMbGNU9LXWYqsBQVaYhETIMnLf74DiLsJY7Hb7mIRm2SsIXKIaywr-JKWPLhllIK7DNoFxnyLIvM7b89K5ysvlD5dOGy-8iai-Q7fwsKte4oP5VQHIrPLWdo-2d0iMx-exh5pwLe_Q"/>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">Midnight Train - Official Full Movie</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">Sarah J. <span class="material-icons text-[12px] align-middle text-gray-400 ml-0.5">check_circle</span></span>
+<span class="text-xs mt-0.5">145K views • 2 days ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYJrieUrqqxU6421wfIJIC0XgiUYw4Vs6GNDqZna2sSnJcEJ9We-98lUHLfJaaXxw8isi87NC1vt_sbld0rZ0Gs8NrcYzqU6GEDJ7eTOW_afNB5zQmQZktXtBlX9XyNJf433ZyexMRh6H4iHDwfBAcdjK93o7s83kgN9sLNVNRIlqiOBR7zbwKhTAm6Sim0jxYTSSUxUdKbm1_P8n6HOx6aLD-EFut9X2qedVlRmggp8sE8vd8a8yUbFovNrWFpyI7f0zltB9B2vwn"/>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">22:05</div>
+</div>
+<div class="flex gap-3 items-start">
+<img alt="Avatar" class="w-9 h-9 rounded-full object-cover mt-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIfScFnkVbNj-CkrXrKLVpyKc13URYab65L2MKpHBPxpquciMSdyc7nzV6ECiu3ktxTbGzfwNjsrsbavzccBIhEopH-bBsTJTFd5XVaNvP0F-Lcwsf28QYttBm19MowNE40cvcXg2wabK43-xyi3JBZe5sC4rlOLLon_B7kU8nsI1Z0a50b8PnO8nYNITETisdZoTNRblSpa6GikD2W6h2HU4LaLDO1N6CAlsbgTLo1BFpFbELb9P1QkwT40kqQWeceEa66bOtZ8Hn"/>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">Neon Dreams: Cyberpunk Short Film</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">Marcus T.</span>
+<span class="text-xs mt-0.5">89K views • 5 hours ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBfXBa4gIHKRPNCLq0Isb1Wj10wnBv4d9bUSh2BBzZqgQgYvKia0vCBlNMrLfebKqz-9uoAcJ9u3Z1GPCf-pOuyocXZKKfuOSOYu1qvM7CpULCOYKEv7Uueh5TLTVOdRfg_id8qZflwtIXSn5lnC1Wop8b18YUOy2rP8k4mfv8UBDBfoV3dRLCXQnpqjxe0IKnlDnGvBce_Rm8EVSsBZaoVGdAZqHIby4kRUjOdk8K-KPgnCuwjd6-wqJqiun1tlrQIoZ62Ck3MYi-"/>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">1:45:30</div>
+</div>
+<div class="flex gap-3 items-start">
+<img alt="Avatar" class="w-9 h-9 rounded-full object-cover mt-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBIOTLfvL1QezmZVGdeH9EYzawAmb5l9UMdK0McVDhcMPK9lK1HFmfScFIcwrsSxZuDyNb5EgMSGMlS_hYwfpZcvvw_AxIyoniAJps0IMT4A49auX5AAWsAnQ48Fsnxd9GTVT56VVGIJ3Pxch9GqTUX_UqKjnqxDw8JTXB6PG_Q5iIHghXppIwYQyjtlVopgieJHGbyfBJ_WMJ5xkw7NGjdCruBZLlISN16UqQ99Tmcs8xkgD88XkJ77b58eOn4cVW2dNA3eGV4Ell"/>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">The Last Letter | Award Winning Drama</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">Elena R.</span>
+<span class="text-xs mt-0.5">1.2M views • 1 month ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRb9JKy5MenH9rx0ZvhMRke77Z-yWLSzLLcLO5XO_GJ9qtIqf9fvbQpKep5X8RyGU5bSW3b81VroKoE9-CV4xt5sBCRkT2uHe6vXOg-6TDEqCS-ZEvaKZtKigV9Hwe93pEoi4mgX2Hv-lLc6WAf1Iais9o4f6RnnDMaZYnISrQTf_W38Ey-CePyMxi_5KNZtQBNbSwyshatJfAsW4R7EbtghylAnk6HhtpwmdIFBsqB41ZbtGh3qBUk2_RvYsu3wyqDQe-ppuI1H7g"/>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">45:10</div>
+</div>
+<div class="flex gap-3 items-start">
+<img alt="Avatar" class="w-9 h-9 rounded-full object-cover mt-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdMVtoq9oyf8BtpY547-U9RJC9y1tafDuUwwEuoFBF_BEHKr4H21VkCA2uQgrbloTOPtIYjDPPhd_bB17uZgWigYsdX_Lrwq5xuls0o9vi4MoHhxSfEWa7Rzd-4vulG45afT5PLyo3WsqBLu31FxQ1x12MdzBifUA9bgIpttwDrkL8WUU2BQgGb3-Jtcb5iQcZ6P8dX3BMwZ_Sf0PWm19mUmwFA9ZReRaQltIxA6Rjx97_IhybHC0VKMTnxm2MSmtLY7pU14sATbWv"/>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">Into the Wild - Nature Documentary</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">David K. <span class="material-icons text-[12px] align-middle text-gray-400 ml-0.5">check_circle</span></span>
+<span class="text-xs mt-0.5">34K views • 1 week ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-[2000px] mx-auto p-4 md:p-6 border-t border-white/5 mt-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-icons text-primary">movie_filter</span> Short Film Picks
+                    </h3>
+<a class="text-sm font-medium text-primary hover:text-white transition-colors" href="#">See all</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnNMy8sugSwXDaLIYpOCGCpvCpusMJL-YMod87hSGIaRSe7gZ2zUGIby-Tt35P8LfpeIp7iOjdlBFqYRQ0A-XSFgE_Yb6uA4so0Kp5btmI7Bs5HrWuaZUKq32Mnp-hT0o6C665IXvhxEGQ3gUsI_BFiuWzcMopIz0DafUzeCtcVL8C7LLjVtj5HtQXKTk1NQ8UtVQpymSb0shPXLxEJjadlvOav3N0UJcHCC_m06D4RUXRCfmCPWe08ra2OHXXErjfJ7rFTpC-ctUR"/>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">12:30</div>
+</div>
+<div class="flex gap-3 items-start">
+<div class="w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xs mt-0.5">CJ</div>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">Concrete Jungle - Urban Stories</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">City Journals</span>
+<span class="text-xs mt-0.5">12K views • 3 weeks ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIzAC0lqlPtMfFG81gSdfAf6-w80BRfJJeTwHoI_l_i3R_2f-LpyTyUderecNRvyiXpGyoGBTws18iLN9a8UkDtHHl5sm2AbZMguOgns9lTCyaRUlbtVtlgGkIHYZTspbI6SWrgIfd7zIDbTgCxMrt1zPAjankHcK-3eqo8XTMO_8vAccfuDBL7KVDRwZ22Fkt4oJSNKXae0l5hQL0we2id6daUu7HmQNwo6UGl4Ye54xyu-u3jZ3_lA4yxnX78n5gDese3fbpUNuf"/>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">1:30:00</div>
+</div>
+<div class="flex gap-3 items-start">
+<img alt="Avatar" class="w-9 h-9 rounded-full object-cover mt-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC93P3kZO17oQ8rQi2lRTbs8oYrydjU7SsQKud72HAaY8K8IbnCME-9jLHDnqSsJOIQ3kDuaIpACtYeiMGJqdTHjkBeCzaMD_s6713rnUgG6_evnMN9z2lra3fXkLZgBTX5qQj2k5rDi43rpBkIY2xhRZJM_wbhOnfTdiow7aesgIpwChRS9XwK5mUxeBl5rT-KMMyrG_Y_4R_C5uaQyBx6hQ4CjBBdv6-OIF9M0EenVcENkYz2qkbeo5wsBrCl9AmtO7Tp6fVka5TA"/>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">Velocity - High Octane Action</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">Anna W.</span>
+<span class="text-xs mt-0.5">560K views • 4 months ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMpHEAP9MDcutycm3rA_pgPtCVKYxACa0J6GRM7BgHc2q51I69G5OxgHp-nNZvByR7pgNEHqWiEFcoefmahc1OQx1UWu-dfV0doiRbRDfZ-OQjOwON1H9Z6NikO5IjhSJh9EZTJdwVUF1k4AQpwG-NE51v6S4EoTllJ06_rnW5XfX8IamKUZoRH_UGJaTsb03Xd4u8fB69z86J3q5bg6YaZvxQ1Sp5uYcoqQ3kB1clQawe8jD1McRMkbLuqN_Rue5EN4WguS0re2Sw"/>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">1:55:00</div>
+</div>
+<div class="flex gap-3 items-start">
+<img alt="Avatar" class="w-9 h-9 rounded-full object-cover mt-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3m9P4VJ5i7WcVzPJFrZoGlg05RzkBhb5oseM2ldTrrqNOq0lYTf2gxqkztM7GRcHRyyqrHH-o1-xHOZuZcFJwFDx3lFtuabHdFQhJQok3gMFFxKGKssAR_s-K3dP__SsNg4YMbGNU9LXWYqsBQVaYhETIMnLf74DiLsJY7Hb7mIRm2SsIXKIaywr-JKWPLhllIK7DNoFxnyLIvM7b89K5ysvlD5dOGy-8iai-Q7fwsKte4oP5VQHIrPLWdo-2d0iMx-exh5pwLe_Q"/>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">Echo Valley (Full Horror Movie)</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">Sarah J. <span class="material-icons text-[12px] align-middle text-gray-400 ml-0.5">check_circle</span></span>
+<span class="text-xs mt-0.5">88K views • 6 days ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFndv4f4eWNbd-SxhFY_QpeqfX1qh6w-JvQUQIhfqlIAJmQY0oXeGnXLaCax51lE9aibDjf6ZouU08HF3i2Hk0m0NqwD54EkMXNWb-5UmPBvwBafMqp3t1D0FF1sIKFXIpwZ6rdwQvlW_7UWmvt7GHpKFGe7VRc0zLTloHKVotH86QfyGk49Cj_WTqWO9yl1o8ITzhMR6DE5NPvZZAWVrr4vN74gvYCLNSRvkv_KYUcZ8cDblR5b_y8T11oz5sn49pdPpWzxGli8sG"/>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">58:20</div>
+</div>
+<div class="flex gap-3 items-start">
+<div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs mt-0.5">MF</div>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">Rhythm &amp; Soul: 90s Music Scene</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">Music Files</span>
+<span class="text-xs mt-0.5">200K views • 1 year ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-[2000px] mx-auto p-4 md:p-6 border-t border-white/5 mt-4 pb-20">
+<h3 class="text-xl font-bold text-white mb-4">Recently Uploaded</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800 group">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUBgkuV54nb31utEGP9eAjHlsjWL3k9vnv0QQ__boVrxocN3lxa_lLDFoLBtvd1I23Gl9C0UmS4RDt-8_8_TxjhkI6mtzMJtXtxrJxZDhZbLWSJQPCyd9_y11WtQE7AgTHhJvpglAttthMiRSTsYeiHgjpnwZ2upfQzq7Z6q_2_9pR-rWyVm47HPK7W8Zyg3lBw6yipwOqL4xM8hO2ivG6aW58btDmrgvYkglNv16dvRHJh_r7LZuQN2TSZfZOiAYI1yEgy8UPlzdh"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-icons text-white opacity-50 group-hover:opacity-100 transition-opacity">play_circle</span>
+</div>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">15:00</div>
+</div>
+<div class="flex gap-3 items-start">
+<div class="w-9 h-9 rounded-full bg-green-700 flex items-center justify-center text-white font-bold text-xs mt-0.5">ID</div>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">Behind The Scenes: Midnight Train</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">Indie Direct</span>
+<span class="text-xs mt-0.5">1.5K views • 2 hours ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group cursor-pointer flex flex-col gap-3">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-gray-800 group">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYJrieUrqqxU6421wfIJIC0XgiUYw4Vs6GNDqZna2sSnJcEJ9We-98lUHLfJaaXxw8isi87NC1vt_sbld0rZ0Gs8NrcYzqU6GEDJ7eTOW_afNB5zQmQZktXtBlX9XyNJf433ZyexMRh6H4iHDwfBAcdjK93o7s83kgN9sLNVNRIlqiOBR7zbwKhTAm6Sim0jxYTSSUxUdKbm1_P8n6HOx6aLD-EFut9X2qedVlRmggp8sE8vd8a8yUbFovNrWFpyI7f0zltB9B2vwn"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-icons text-white opacity-50 group-hover:opacity-100 transition-opacity">play_circle</span>
+</div>
+<div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs font-medium px-1.5 py-0.5 rounded">08:45</div>
+</div>
+<div class="flex gap-3 items-start">
+<div class="w-9 h-9 rounded-full bg-pink-700 flex items-center justify-center text-white font-bold text-xs mt-0.5">VL</div>
+<div class="flex flex-col">
+<h4 class="text-white font-semibold text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">VFX Breakdown: Neon Dreams</h4>
+<div class="text-gray-400 text-sm mt-1 flex flex-col">
+<span class="hover:text-white transition-colors">VFX Labs</span>
+<span class="text-xs mt-0.5">400 views • 3 hours ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+
+</body></html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creator Portfolio Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec1337",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221013",
+                        "surface-dark": "#2d1519", // Slightly lighter shade for cards
+                        "surface-darker": "#1a0b0e", // Darker shade for contrast
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for horizontal scrolling sections */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 font-display antialiased selection:bg-primary selection:text-white">
+<!-- Navigation -->
+<nav class="fixed top-0 z-50 w-full bg-background-light/90 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-white text-lg">movie_filter</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">IndieStream</span>
+</div>
+<div class="hidden md:block">
+<div class="ml-10 flex items-baseline space-x-8">
+<a class="text-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium hover:text-primary transition-colors" href="#">Discover</a>
+<a class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors" href="#">Festivals</a>
+<a class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors" href="#">Community</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none">
+<span class="material-icons">search</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gray-300 dark:bg-gray-700 overflow-hidden relative" data-alt="User Avatar">
+<img alt="User" class="object-cover w-full h-full" data-alt="Small user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALuSLxOxQHImoueslqCfJYiXNiwPgzZvaxEQxgsnjOg6EnFReePo7CLBqRKRVpnQsB5OZB0Hb8zx5QbIkos_kQDbseXt20FVXbOfVqU4z8OAUHtD-y54AWtxEz0iYr_H1cH0n0wbiaQuURZFLvKZSh_X_JzhVXf1rgiB1JMlazv_1xyJIKlFG_mSO9ksaaSQwRkz93eth72XEpAUw00fxle5oTfK3aYe3j7OmMlJmiIOfjLXgl5ANbwCGxKAncfaADAEbHbwirHKuh"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<main class="relative min-h-screen pb-20">
+<!-- Cinematic Hero Header -->
+<div class="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
+<!-- Hero Image Background -->
+<div class="absolute inset-0 bg-gray-900" data-alt="Cinematic dark moody film set lighting red and black">
+<img alt="Cinematic Background" class="w-full h-full object-cover opacity-60" data-alt="Dark moody film set lighting with red smoke atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS4akTsVEjj8CJL9Sdo7Rb0UddzfyA8k2zxFx9HCwOd6Sco7ttAUeg0fTOzYqc4Dz2R6Sa_RYzp3Jq2HjPrEP827qJyEFANRgkere7Lq81Fm82z5kUoSlaCD3Pl7YaLW-Wa2jGGdH559Jd6z69EsaLJlwGXgzErNu01DdKDqN6QFLktvKALmCW0jLkEiLGxJxDBOdvgshHFT1jQmBjmXAvLptEEzIaAn7_zBmvuH_GICbGPdg4T1JPFGqhzydFYjpnTRmXklZMyDrG"/>
+</div>
+<!-- Gradient Overlay for smooth transition -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/50 to-transparent"></div>
+<!-- Profile Info Container (Positioned at bottom) -->
+<div class="absolute bottom-0 w-full z-10 px-4 sm:px-6 lg:px-8 pb-8 md:pb-12">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-end md:items-center gap-6 md:gap-8">
+<!-- Avatar -->
+<div class="relative group">
+<div class="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-background-dark overflow-hidden shadow-2xl bg-surface-dark" data-alt="Profile picture of Sarah Jenkins">
+<img alt="Sarah Jenkins" class="w-full h-full object-cover" data-alt="Portrait of a female filmmaker with camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgFzh_YKHjGgWt0XTW_64eQedN4WuAjDC08iw4Rd1fT5DVbdLJnxoyq_VTtdaC2397kVwTm0cKfONyYiyaiKQXoy-06YPmU_rpw_ZX5wbIOUvSV3E2-BayVyUcpW8yj_gF1JrOzrNhuK_MqK9hrI-lQly_BMOFgMUucLov5wFOPyG8l22xiMqPPXpHvU5sj0Am1l6_b2mYtI_Hj_qXBHxwr8oVGpClnWV64R-7nI0m9LB2rEvRjezY-j3Lr16CW9L6qKbPjUrO8S6l"/>
+</div>
+<div class="absolute bottom-2 right-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full border-2 border-background-dark">PRO</div>
+</div>
+<!-- Text Info -->
+<div class="flex-1 mb-2 md:mb-4">
+<div class="flex flex-col md:flex-row md:items-center gap-3 mb-2">
+<h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Sarah Jenkins</h1>
+<span class="hidden md:inline-block w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="text-gray-300 text-lg font-medium">Red Horizon Productions</span>
+</div>
+<p class="text-xl text-gray-300 max-w-2xl font-light">Indie Horror Director | VFX Artist | Creating nightmares since 2015.</p>
+<!-- Stats Row -->
+<div class="flex gap-6 mt-4 text-sm text-gray-400">
+<div class="flex items-center gap-1">
+<span class="material-icons text-primary text-base">movie</span>
+<span class="text-white font-bold">12</span> Films
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-primary text-base">visibility</span>
+<span class="text-white font-bold">2.4M</span> Views
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-primary text-base">people</span>
+<span class="text-white font-bold">85K</span> Followers
+                            </div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-3 mb-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none bg-primary hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-icons text-sm">add</span> Follow
+                        </button>
+<button class="flex-1 md:flex-none bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 text-white font-medium py-3 px-6 rounded-lg transition-all flex items-center justify-center gap-2">
+<span class="material-icons text-sm">mail</span> Contact
+                        </button>
+<div class="flex gap-2">
+<a class="w-12 h-12 flex items-center justify-center rounded-lg bg-surface-dark hover:bg-surface-darker text-gray-300 hover:text-primary transition-colors border border-white/5" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+<a class="w-12 h-12 flex items-center justify-center rounded-lg bg-surface-dark hover:bg-surface-darker text-gray-300 hover:text-primary transition-colors border border-white/5" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Sections -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left Column: Bio & Additional Info -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Bio Module -->
+<div class="bg-surface-darker/50 border border-white/5 p-6 rounded-xl">
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">About the Creator</h3>
+<div class="prose prose-sm prose-invert text-gray-300">
+<p>
+                            Sarah Jenkins is an award-winning independent filmmaker based in Portland, OR. Specializing in psychological horror and sci-fi thrillers, she combines practical effects with minimal VFX to create grounded, terrifying atmospheres.
+                        </p>
+<p class="mt-4">
+                            Her breakout short, "The Silent Woods," premiered at Sundance in 2021. She is currently in pre-production for her first feature-length film, funded entirely by this community.
+                        </p>
+</div>
+<button class="mt-4 text-primary text-sm font-semibold hover:text-red-400 flex items-center gap-1 transition-colors">
+                        Read Full Bio <span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Upcoming Project Teaser -->
+<div class="bg-gradient-to-br from-surface-dark to-black border border-primary/20 p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-icons text-6xl text-primary">campaign</span>
+</div>
+<h3 class="text-xs font-bold uppercase tracking-wider text-primary mb-2 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        In Production
+                    </h3>
+<h4 class="text-xl font-bold text-white mb-1">Echoes of the Void</h4>
+<p class="text-sm text-gray-400 mb-4">Sci-Fi Thriller • Feature Film</p>
+<div class="w-full bg-gray-800 rounded-full h-2 mb-2">
+<div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+</div>
+<div class="flex justify-between text-xs text-gray-500 font-medium">
+<span>Funding: 65%</span>
+<span>Est. Release: Oct 2025</span>
+</div>
+</div>
+<!-- Equipment / Toolkit -->
+<div class="bg-surface-darker/50 border border-white/5 p-6 rounded-xl">
+<h3 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4">Toolkit</h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-dark border border-white/10 text-gray-300 text-xs px-3 py-1 rounded-full">RED Komodo</span>
+<span class="bg-surface-dark border border-white/10 text-gray-300 text-xs px-3 py-1 rounded-full">DaVinci Resolve</span>
+<span class="bg-surface-dark border border-white/10 text-gray-300 text-xs px-3 py-1 rounded-full">Blender</span>
+<span class="bg-surface-dark border border-white/10 text-gray-300 text-xs px-3 py-1 rounded-full">After Effects</span>
+<span class="bg-surface-dark border border-white/10 text-gray-300 text-xs px-3 py-1 rounded-full">Sony A7SIII</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Filmography & Gallery -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Filmography Section -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold uppercase text-white tracking-tight flex items-center gap-2">
+<span class="w-1 h-6 bg-primary rounded-full"></span>
+                            Filmography
+                        </h2>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
+<span class="material-icons text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
+<span class="material-icons text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Poster Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+<!-- Film Card 1 -->
+<div class="group relative aspect-[2/3] bg-gray-900 rounded-lg overflow-hidden cursor-pointer shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300">
+<img alt="The Silent Woods Poster" class="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity" data-alt="Dark misty forest with silhouette figure poster art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgmOAT1JMDgNPUwpn5H_SLqD8Pkc3-6Z9BGSTxcn7jh-c7OhK0BGPXrW703HFk0QDUvd95S6Yj2TyKmddG6XT35lADZ0RwMTpyFZoE-2UTTSYq1BOAoKHrqh-T1wUYZ76ekvCXjdFpYb-BkSIjX_S9iaXCf8IeT7fQjqRvjM2xU2E4deoPzIOaKQ0L2lGfQyv6iC9NzbGrCIbthMzmqggcCah2jVfY8xyM5Oa0NYpaJf1Gb-WH7CQbLjbiRMg4OYVoUr_klXgKZuyX"/>
+<div class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">STAFF PICK</div>
+<div class="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-300">
+<h3 class="text-lg font-bold text-white leading-tight mb-1">The Silent Woods</h3>
+<p class="text-xs text-gray-300 mb-2">Horror • 24m</p>
+<button class="bg-primary hover:bg-red-600 text-white text-xs font-bold py-2 px-4 rounded w-full flex items-center justify-center gap-1">
+<span class="material-icons text-sm">play_arrow</span> Watch Now
+                                </button>
+</div>
+</div>
+<!-- Film Card 2 -->
+<div class="group relative aspect-[2/3] bg-gray-900 rounded-lg overflow-hidden cursor-pointer shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300">
+<img alt="Neon Nights Poster" class="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity" data-alt="Cyberpunk city street at night with neon signs poster art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDoS_ar2ree6FaOFQ-ABalHLECW1RcR19vBpY0ELeV2ISDoP7T03ZozEnT0Go4qGnNwWYBPuVzXVJJCtdSsvIHTzu-S2zgZ9KwsMTuvzXqcGXox90WEmCoINlTnk8qsJeAOgSBVbbVj__hERWCcvgFDOBrX-0WUsA9QaUXlA9SYM97H_uLklZgsOezqI5CHvAvXQFmu4GkpiSxZddUF6J7r5AnEizkrv2USQxDiZHfplbO_6SSswwhyJPZyXHoPtsBFa9M25m4LTIq"/>
+<div class="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-300">
+<h3 class="text-lg font-bold text-white leading-tight mb-1">Neon Nights</h3>
+<p class="text-xs text-gray-300 mb-2">Sci-Fi • 18m</p>
+<button class="bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white text-xs font-bold py-2 px-4 rounded w-full flex items-center justify-center gap-1">
+<span class="material-icons text-sm">play_arrow</span> Watch Trailer
+                                </button>
+</div>
+</div>
+<!-- Film Card 3 -->
+<div class="group relative aspect-[2/3] bg-gray-900 rounded-lg overflow-hidden cursor-pointer shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300">
+<img alt="Fracture Poster" class="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity" data-alt="Abstract shattered glass texture black and white poster art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDURNCkasmBrCGMy4uiS5VbUbIzbtcaEl7qkXdqtbkL_m6U0OYEpY0FtyozOzd8YS-t_N-scnaOpkd9SJXiFP_12rb5QBv1Gn6S-X8NEU6g1I4n2oSZROkS7OYJc359rgROex5GjZHloOSARQwrMkm-TmOWLQjnZOO4DRzfMqHCLHrY3kn7btZeAKJh50RtIJ6wK0ebjcIzzN9AnVuZe1eUu5Ru1yNc6PmZe9XN44LxB08MpdczOpDXQj1R-J2nDMCteJJj2eS6gJ_3"/>
+<div class="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-300">
+<h3 class="text-lg font-bold text-white leading-tight mb-1">Fracture</h3>
+<p class="text-xs text-gray-300 mb-2">Drama • 45m</p>
+<button class="bg-primary hover:bg-red-600 text-white text-xs font-bold py-2 px-4 rounded w-full flex items-center justify-center gap-1">
+<span class="material-icons text-sm">play_arrow</span> Watch Now
+                                </button>
+</div>
+</div>
+<!-- Film Card 4 -->
+<div class="group relative aspect-[2/3] bg-gray-900 rounded-lg overflow-hidden cursor-pointer shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300">
+<img alt="The Last Signal Poster" class="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity" data-alt="Minimalist radio tower silhouette against starry sky poster art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNqo7iz2LVA4QFSQcMmDKPXn12T-PNHtbyk6VtY9lQu2-b9PdVbR0SOf9JUK2sDteo_qoPHEUScWqw4PJfM-m599MkHiF38_C0l7sEzeKfIGHOG1mzMPkQuV_NpHZOxiAT2wf4a9sa2qLH4i7eHRGAWhIUwz44NhPzPJLIeyOlvAnRAqktH3g5AMPyC2c2hIucF72zA9kM3bLWWSWr7yXmSY1NLf3XMkiK-C9iwlMZ7kX6b1JbfiVWegag-KwZssc8Xuex5Uxey_SH"/>
+<div class="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-300">
+<h3 class="text-lg font-bold text-white leading-tight mb-1">The Last Signal</h3>
+<p class="text-xs text-gray-300 mb-2">Thriller • 12m</p>
+<button class="bg-primary hover:bg-red-600 text-white text-xs font-bold py-2 px-4 rounded w-full flex items-center justify-center gap-1">
+<span class="material-icons text-sm">play_arrow</span> Watch Now
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Behind the Scenes Gallery -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold uppercase text-white tracking-tight flex items-center gap-2">
+<span class="w-1 h-6 bg-gray-600 rounded-full"></span>
+                            Behind The Scenes
+                        </h2>
+<a class="text-sm text-primary hover:text-white transition-colors font-semibold" href="#">View All Photos</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[200px]">
+<!-- BTS Item 1 (Wide) -->
+<div class="md:col-span-2 row-span-1 relative rounded-xl overflow-hidden group cursor-zoom-in">
+<img alt="Camera Setup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Film crew setting up a shot with large camera on dolly track" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjPhRGvvguc6KuHVwgUE7K6liyGUVijoNm989aB51q7p7aGe3t50nw3NARq11lhB-yigz2NuAWxvMT_mJCza8psupit1Kn5kAEFKrzy0gfxZbONwwBxI78ifhE8qZzdwO3zXZwI-iI-nA5cORh0TdYbFVj7y9-edLJlo3uw1saXdGAMaYy5925XHQE3lmX_xgV0bU59aPiVplgsNX2Ckad_lFaRP8j_3BydM1G312mWt93VRE-OPgaguQiGGMexUYgh8QQ3GAB5tYt"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="text-white font-medium bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm text-sm">On Set: The Silent Woods</span>
+</div>
+</div>
+<!-- BTS Item 2 -->
+<div class="relative rounded-xl overflow-hidden group cursor-zoom-in">
+<img alt="Director chair" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Director watching monitor intensely on film set" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-FU75p9NnHBizr5pjJCpZpTf9_Oo_FU2PrNKk8exArWZFyesucsJLNl7O9GoL6xIYo6R25QpoN_-SZks6rsL5VisvWEwwn-4z1THaM1MAO7flbBARQea5zgfoxP6rJBAvPb18nT-3smDZiO792I31oj8CIgBoW4aYSXqyZEKiJ5VNPqvFd5RbkZbPpxiWCezP24wgmI8CjuV3IBj6rauJM7Qsttm-HOsQ-q7wdso7AN66fzUivItUV2qCyUz4dcMVNOeUyh5Qe90S"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="text-white font-medium bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm text-sm">Director Mode</span>
+</div>
+</div>
+<!-- BTS Item 3 -->
+<div class="relative rounded-xl overflow-hidden group cursor-zoom-in">
+<img alt="Editing room" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close up of video editing timeline software on monitor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-RCyOBVZiuzGJgxE8H2btOHbTuih3Yl_mrjyJLHHM2lkf3-F6Q66GiuOGKGWiuQU54h1WbYYrmaXSLqSTI27uiqYhjR2RBmzw9S3JQDICVhRtMxUW4Zz9vp4vFc20lErOkYjEzwfe38MkgCfYs9PwwMkbIChnOyjvk9jtKxnPeTcRQsKdOYMrUIem3wUaM5cvO_l1u383eq-K_J7aRg2vRZMse7pbFPFXiwEIJGAFc6CrFRCMemnPE88PPJByWVShhu_5h90G4YpD"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="text-white font-medium bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm text-sm">Post Production</span>
+</div>
+</div>
+<!-- BTS Item 4 (Wide) -->
+<div class="md:col-span-2 row-span-1 relative rounded-xl overflow-hidden group cursor-zoom-in">
+<img alt="Cast reading" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Actors sitting around table reading script together" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGsyhky43iT3xUnm49A-lTP-wDgzM828xtgsXuBMo20ZQJ9AoeWgBwsKtEktVM0_y8io3AeFiifope-yf9oqOy1T57iBh3g7l8QyAnseB677v1fw0mLrO7ZrdsSsIrWSRdOH3LWHlD9qTJKeGSs5xdSv1-vOEN8XugGGjuLYESfCB1vhiGUbKBwNprjoJIC4uZRhetrrfd3d-wZVsqf0zc7hF_KQbJTdFV-84HQd6KS-urcYI9hVW4OTQ7joGzc51o1in-Icnybh3b"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="text-white font-medium bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm text-sm">Table Read</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-darker border-t border-white/5 py-12 mt-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="flex items-center gap-2 mb-4 md:mb-0">
+<div class="w-6 h-6 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-white text-xs">movie_filter</span>
+</div>
+<span class="text-lg font-bold text-white">IndieStream</span>
+</div>
+<div class="text-gray-500 text-sm">
+                    © 2023 IndieStream Inc. All rights reserved.
+                </div>
+<div class="flex gap-6 mt-4 md:mt-0 text-sm font-medium text-gray-400">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Help</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
